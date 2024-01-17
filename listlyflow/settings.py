@@ -43,11 +43,14 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'user',
+    'task',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+LOGIN_URL = '/user/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

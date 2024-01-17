@@ -2,5 +2,89 @@
 {% block title %}
 <title>ListlyFlow</title> {% endblock title %}
 {% block content %}
+{% if request.user.is_authenticated %}
+
+<div class="d-flex flex-wrap">
+
+  <div class="col-2 bg-secondary text-light p-4">
+    <h5 class="text-light mx-2 mb-3">Task By Priority:</h5>
+    <div class="ms-2 mb-3">
+        <a class="btn btn-outline-warning m-1" 
+        style="width: 150px; font-weight: 600;"
+        href="{% url "sort-priority" True %}">Maximum</a>
+        <a class="btn btn-outline-warning m-1" 
+        style="width: 150px; font-weight: 600;"
+        href="{% url "sort-priority" False %}">Minimum</a>
+      </div>
+        
+    <h5 class="text-light mx-2 mb-3">Task By Category:</h5>
+    <div class="ms-2">
+        {% for category in categories %}
+          <a class="btn btn-outline-warning m-1" 
+          style="width: 150px; font-weight: 600;"
+          href="{% url "sort-category" category.slug %}">{{ category.name }}</a>
+          {% endfor %}
+        </div>
+    <div class="ms-2">
+        <a class="btn btn-outline-warning m-1 p-0" 
+        style="width: 150px; font-weight: 500; font-size: 30px;"
+        href="{% url "add-category" %}"> + </a>
+  </div>
+</div>
+
+  <div class="col-10">
+    
+    
+    <div
+    class="d-flex flex-wrap justify-content-center" >
+      {% for task in data %}
+          <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card p-2 m-2 shadow w-100">
+              <div class="card-body">
+                <h4> {{task.title}} </h4>
+                <h6> {{task.description}} </h6>      
+                <p> {{task.category}} </p>
+                <p> Due Date: {{task.due_date}} </p>
+                {% if task.priority > 6 %}
+                <p class="btn btn-sm btn-danger ">Priority: {{task.priority}} </p>
+                {% elif task.priority > 4 %}
+                <p class="btn btn-sm btn-warning">Priority: {{task.priority}} </p>
+                {% else %}
+                <p class="btn btn-sm btn-success">Priority: {{task.priority}} </p>
+                {% endif %}
+
+                <div class="d-flex ">
+                    {% if task.status %}
+                    <a class="btn-sm btn-secondary mx-1 text-decoration-none" disabled>Completed</a>
+                    {% else %}
+                    <a class="btn-sm btn-success mx-1 text-decoration-none" href="{% url "task-done" task.id %}">Complete Task</a>
+                    {% endif %}
+                    <a class="btn-sm btn-info mx-1 text-light text-decoration-none" href="{% url "edit-task" task.id %}">Edit</a>
+                    <a class="btn-sm btn-info mx-1 text-light text-decoration-none" href="{% url "delete-task" task.id %}">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+
+      <div class="col-md-4 col-sm-6 d-flex align-items-stretch">
+        <div class="card p-2 m-2 shadow w-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-center"
+            style="font-size:33px">
+                <a href="{% url "add-task" %}">Add another Task</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      
+  </div>
+</div>
+
+{% else %}
 <h3>HOME</h3>
+{% endif %}
+
 {% endblock content %}
