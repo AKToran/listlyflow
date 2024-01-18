@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "listlyflow/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "listlyflow/wsgi.py"
+      }
+    ]
+}
