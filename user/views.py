@@ -2,9 +2,12 @@ from typing import Any
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render
-from django.views.generic import FormView
-from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import FormView, UpdateView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -19,7 +22,7 @@ from . import forms
 class CreateAccountView(FormView):
     form_class = forms.CreateAccountForm
     template_name = 'create_account.html'
-    success_url = reverse_lazy('create-account')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         user = form.save()
@@ -53,9 +56,22 @@ class UserLoginView(LoginView):
         messages.success(self.request, 'Login successful')
         return reverse_lazy('home')
 
+@login_required
 def user_logout(request):
     if request.user.is_authenticated:
         logout(request)
         messages.success(request, 'Logout successful')
     return redirect('home')
-    
+
+class UserProfileView(UpdateView, LoginRequiredMixin):
+    model = User
+    from_class = UserChangeForm
+    fields = ('first_name','last_name')
+    pk_url_kwarg = 'id'
+    template_name = 'profile.html'
+    success_url = reverse_lazy('home')
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Profile updated successfully')
+        return super().form_valid(form)
+        

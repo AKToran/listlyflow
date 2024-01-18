@@ -2,12 +2,14 @@
 {% block title %}
 <title>ListlyFlow</title> {% endblock title %}
 {% block content %}
+{% load crispy_forms_tags %}
+
 {% if request.user.is_authenticated %}
 
 <div class="d-flex flex-wrap">
 
   <div class="col-2 bg-secondary text-light p-4">
-    <h5 class="text-light mx-2 mb-3">Task By Priority:</h5>
+    <h5 class="text-light mx-2 mb-2">Task By Priority:</h5>
     <div class="ms-2 mb-3">
         <a class="btn btn-outline-warning m-1" 
         style="width: 150px; font-weight: 600;"
@@ -16,8 +18,20 @@
         style="width: 150px; font-weight: 600;"
         href="{% url "sort-priority" False %}">Minimum</a>
       </div>
+
+    <h5 class="text-light mx-2 mb-2">Task By Date:</h5>
+    <div class="ms-2 mb-3">
+        <a class="btn btn-outline-warning m-1" 
+        style="width: 150px; font-weight: 600;"
+        href="{% url "sort-date" False %}">Latest</a>
+        <a class="btn btn-outline-warning m-1" 
+        style="width: 150px; font-weight: 600;"
+        href="{% url "sort-date" True %}">Oldest</a>
+      </div>
         
-    <h5 class="text-light mx-2 mb-3">Task By Category:</h5>
+      
+
+    <h5 class="text-light mx-2 mb-2">Task By Category:</h5>
     <div class="ms-2">
         {% for category in categories %}
           <a class="btn btn-outline-warning m-1" 
@@ -34,7 +48,20 @@
 
   <div class="col-10">
     
-    
+  <div class="d-flex m-3">
+    <h4 class="mt-2">Find specific task:</h4>
+
+    <form class="d-flex p-2" action="{% url "filter" %}">
+      {% for f in form  %}
+      <!-- {{ form | crispy}} -->
+      <div>
+        {{f}}
+      </div>
+      {% endfor %}
+      <button class="btn btn-secondary mx-1" type="submit">Filter</button>
+    </form>
+  </div>
+
     <div
     class="d-flex flex-wrap justify-content-center" >
       {% for task in data %}
@@ -84,7 +111,16 @@
 </div>
 
 {% else %}
-<h3>HOME</h3>
+
+  <div class="text-center pt-5">
+    <h2>Hello mate, Welcome to ListlyFlow!</h2>
+    <h3>A simple task/project management or to-do app, whatever you call it.</h3>
+    <h4 class="m-3"><a class="btn btn-info fw-bold" href="{% url "create-account" %}">Register</a> to give it a try. Already have an account? <a class="btn btn-success fw-bold" 
+      href="{% url "login" %}">Login</a>
+    </h4>
+
+  </div>
+
 {% endif %}
 
 {% endblock content %}

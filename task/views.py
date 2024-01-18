@@ -46,7 +46,7 @@ class EditTaskView(UpdateView):
 def taskdone(request, id):
     task = models.Task.objects.get(id=id)
     task.status = True
-    task.priority = 1
+    task.priority = 0
     task.save()
     email_subject = "Task Complete!"
     email_body = render_to_string('task_done.html', {'user': request.user, 'task': task})

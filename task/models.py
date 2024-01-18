@@ -17,7 +17,7 @@ class Task(models.Model):
     description = models.TextField(blank=True, null=True)
     status = models.BooleanField(default=False)
     due_date = models.DateField(null=True, blank=True)
-    priority = models.IntegerField(default=1, choices = [(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8')])
+    priority = models.IntegerField(default=1, choices = [(0,'0'),(1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8')])
     category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='tasks')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
 
