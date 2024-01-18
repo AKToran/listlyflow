@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-#sw1vdnr@r@h&2yp1iffzcez8c8s1i5co3=@b=0g+ruj^z^wfl
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://listlyflow.vercel.app/']
+CSRF_TRUSTED_ORIGINS = ['https://listlyflow.vercel.app/','https://listlyflow.onrender.com']
 
 
 # Application definition
