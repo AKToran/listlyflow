@@ -29,7 +29,7 @@ class CreateAccountView(FormView):
         messages.success(self.request, 'Check your email address for verification.')
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
-        verify_link = f"http://127.0.0.1:8000/user/activate/{uid}/{token}"
+        verify_link = f"https://listlyflow.onrender.com/user/activate/{uid}/{token}"
         subject = "Very Email"
         email_body = render_to_string('verify_email.html', {'verify_link': verify_link})
         email = EmailMultiAlternatives(subject,'', to=[user.email])
