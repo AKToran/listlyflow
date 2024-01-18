@@ -28,7 +28,8 @@ SECRET_KEY = 'django-insecure-#sw1vdnr@r@h&2yp1iffzcez8c8s1i5co3=@b=0g+ruj^z^wfl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://listlyflow.vercel.app/']
 
 
 # Application definition
