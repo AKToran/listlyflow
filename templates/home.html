@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css_link %}
+<link rel="stylesheet" href="{% static "css/home.css" %}">
+{% endblock css_link %}
 {% block title %}
 <title>ListlyFlow</title> {% endblock title %}
 {% block content %}
@@ -112,14 +116,48 @@
 
 {% else %}
 
-  <div class="text-center pt-5">
-    <h2>Hello mate, Welcome to ListlyFlow!</h2>
+  <div class="intro">
+    <div>
+      <h2>Hello mate, Welcome to ListlyFlow!</h2>
     <h3>A simple task/project management or to-do app, whatever you call it.</h3>
     <h4 class="m-3"><a class="btn btn-info fw-bold" href="{% url "create-account" %}">Register</a> to give it a try. Already have an account? <a class="btn btn-success fw-bold" 
       href="{% url "login" %}">Login</a>
     </h4>
-
+    </div>
   </div>
+
+<div class="description">
+  <h2 class="mb-3">User Homepage looks like:</h2>
+  <img class="w-75 shadow" src="{% static "images/homepage.png" %}" alt="Logged In User Dashboard">
+  <h2 class="p-5 mt-4" style="background-color: #f8f0e6;"> Get your tasks out of your head, <br> we wil Remember them for you. </h2>
+
+</div>
+
+<div class="row">
+  <div class="col-5">
+    <img class="w-75 m-5" src="{% static "images/features.jpg" %}" alt="Features Image">
+  </div>
+  <div class="features col-7">
+    <h2>You can:</h2>
+    <ul><i class="fa-solid fa-plus"></i> Add task</ul>
+    <ul><i class="fa-solid fa-bars"></i> Assign task to project/categories</ul>
+    <ul><i class="fa-regular fa-flag"></i> Give priority level to tasks</ul>
+    <ul><i class="fa-regular fa-calendar-days"></i> Add a due date</ul>
+    <ul><i class="fa-solid fa-sort"></i> Sort tasks via:
+      <ul class="fw-light">Category</ul>
+      <ul class="fw-light">Priority</ul>
+      <ul class="fw-light">Due Date</ul>
+    </ul>
+    <ul><i class="fa-solid fa-filter"></i> Find specific task</ul>
+    <ul><i class="fa-regular fa-envelope"></i> Recieve updates on email</ul>
+    <ul><i class="fa fa-search" aria-hidden="true"></i> Search task</ul>
+    <ul><i class="fa-regular fa-pen-to-square"></i> Edit/Delete task</ul>
+    <ul><i class="fa-solid fa-check"></i> Complete task</ul>
+  </div>
+    
+
+</div>
+
 
 {% endif %}
 

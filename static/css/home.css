@@ -1,0 +1,25 @@
+body{
+    overflow-x: hidden;
+}
+
+.intro{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    background-color: #f8f0e6;
+    
+}
+
+.description{
+    text-align: center;
+    margin-top:50px;
+}
+
+.features{
+    list-style: none;
+    padding-top: 80px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
