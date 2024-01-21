@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('about/', views.aboutUs, name='about_us'),
     path('category/<slug:slug>/', views.home, name='sort-category'),
     path('priority/<str:bool>/', views.sortByPriority, name='sort-priority'),
     path('date/<str:bool>/', views.sortByDate, name='sort-date'),

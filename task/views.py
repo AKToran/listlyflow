@@ -59,4 +59,3 @@ def deleteTask(request, id):
     task = models.Task.objects.get(id=id)
     task.delete()
     return redirect('home')
-

@@ -74,3 +74,5 @@ def findSpecificTask(request):
     return render(request, 'home.html', {'data': data,'categories': categories, 'form': form})
 
 
+def aboutUs(request):
+    return render(request, 'about_us.html')

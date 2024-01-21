@@ -75,3 +75,13 @@ class UserProfileView(UpdateView, LoginRequiredMixin):
         messages.success(self.request, 'Profile updated successfully')
         return super().form_valid(form)
         
+
+class ContactUsView(FormView):
+    form_class = forms.ContactUsForm
+    template_name = "contact_us.html"
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Thanks for reaching out to us. We will get back to you soon.')
+        return super().form_valid(form)
