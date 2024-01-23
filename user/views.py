@@ -1,4 +1,6 @@
 from typing import Any
+from django.db.models.base import Model as Model
+from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render
@@ -66,13 +68,16 @@ def user_logout(request):
         messages.success(request, 'Logout successful')
     return redirect('home')
 
-class UserProfileView(UpdateView, LoginRequiredMixin):
+class UserProfileView(LoginRequiredMixin, UpdateView):
     model = User
     from_class = UserChangeForm
     fields = ('first_name','last_name')
-    pk_url_kwarg = 'id'
     template_name = 'profile.html'
     success_url = reverse_lazy('home')
+
+    def get_object(self):
+        return self.request.user
+
     def form_valid(self, form):
         form.save()
         messages.success(self.request, 'Profile updated successfully')
