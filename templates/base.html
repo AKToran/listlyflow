@@ -20,7 +20,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand mx-3 text-warning fw-bold" href="{% url "home" %}">ListlyFlow</a>
+          <a class="navbar-brand mx-3 ms-5 text-warning fw-bold" href="{% url "home" %}">ListlyFlow</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -32,7 +32,7 @@
             </ul>
 
             
-            <ul class="nav-item mb-0 d-flex">
+            <ul class="nav-item mb-0 me-5 d-flex">
             {% if request.user.is_authenticated %}
 
             <form class="form-inline d-flex" action="{% url "home" %}">
