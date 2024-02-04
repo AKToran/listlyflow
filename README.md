@@ -1,7 +1,7 @@
 
 # ListlyFlow
 
-A task management/to-do web app made using Django MVT pattern. 
+A task management/to-do web app made using the Django MVT pattern. 
 
 
 ## Features
@@ -19,5 +19,10 @@ A task management/to-do web app made using Django MVT pattern.
 - Edit task
 - Delete task
 - Complete task
-- Recieve updates on email
+- Receive updates on email
+
+
+## Live Link
+
+[ListlyFlow](https://listlyflow.onrender.com/)
 
